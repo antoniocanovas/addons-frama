@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+
+
+
+    <template id="frama_stock_report_delivery_has_serial_move_line"
+              inherit_id="product_expiry.stock_report_delivery_has_serial_move_line_inherit_product_expiry"
+              priority="999">
+
+        <xpath expr="//span[@t-field='move_line.lot_id.expiration_date']" position="attributes">
+            <attribute name="t-options">{"widget": "date", "date_format": "%%d/%%m/%%Y"}</attribute>
+        </xpath>
+
+    </template>
+    <template id="add_invisible_to_backorder_div" inherit_id="stock.report_delivery_document" priority="999">
+        <xpath expr="//table[@name='stock_backorder_table']" position="attributes">
+            <attribute name="t-if">1 == 0</attribute>
+        </xpath>
+        <xpath expr="//p[contains(span, 'Remaining quantities not yet delivered:')]" position="attributes">
+            <attribute name="t-if">1 == 0</attribute>
+        </xpath>
+
+    </template>
+
+
+</odoo>
