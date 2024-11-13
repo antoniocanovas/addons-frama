@@ -23,7 +23,7 @@
 {
     "name": "report framajova",
     "version": "1.0",
-    "depends": ["product", "stock", "sale"],
+    "depends": ["stock", "sale"],
     "author": "Punt Sistemes",
     "category": "Project",
     "website": "https://www.puntsistemes.es",
