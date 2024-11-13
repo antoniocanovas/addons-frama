@@ -20,48 +20,48 @@
 
                     <!-- Sección de Descripción -->
                     <div class="row">
-                        <div class="col-12" style="font-size: 1em; font-weight: bold;">DESCRIPCIÓN</div>
+                        <div class="col-12" style="font-size: 2em; ">DESCRIPCIÓN</div>
                     </div>
                     <div class="row">
-                        <div class="col-12" style="font-size: 1.5em; font-weight: bold; margin-bottom: 10px;">
+                        <div class="col-12" style="font-size: 3em; font-weight: bold; margin-bottom: 10px;">
                             <span t-field="line.product_id.name"></span>
                         </div>
                     </div>
-                    <hr style="border: none; border-top: 1px solid black; margin: 20px 0;"/>
+                    <hr style="border: none; border-top: 1px solid black; margin: 20px 0 25px 0;"/>
 
                     <!-- Sección de Lote y Código -->
                     <div class="row">
-                        <div class="col-6" style="font-size: 1em; font-weight: bold;">LOTE</div>
-                        <div class="col-6 text-right" style="font-size: 1em; font-weight: bold;">CÓDIGO</div>
+                        <div class="col-6" style="font-size: 2em; ">LOTE</div>
+                        <div class="col-6 text-right" style="font-size: 2em; ">CÓDIGO</div>
                     </div>
                     <div class="row">
-                        <div class="col-6" style="font-size: 1.5em; font-weight: bold; margin-bottom: 10px;">
+                        <div class="col-6" style="font-size: 3em; font-weight: bold; margin-bottom: 10px;">
                             <span t-field="line.lot_id.name"></span>
                         </div>
-                        <div class="col-6 text-right" style="font-size: 1.5em; font-weight: bold; margin-bottom: 10px;">
+                        <div class="col-6 text-right" style="font-size: 3em; font-weight: bold; margin-bottom: 10px;">
                             <span t-field="line.product_id.default_code"></span>
                         </div>
                     </div>
-                    <hr style="border: none; border-top: 1px solid black; margin: 5px 0;"/>
+                    <hr style="border: none; border-top: 1px solid black; margin: 5px 0 25px 0;"/>
 
                     <!-- Sección de Caducidad y Cantidad -->
                     <div class="row">
-                        <div class="col-6" style="font-size: 1em; font-weight: bold;">CADUCIDAD</div>
-                        <div class="col-6 text-right" style="font-size: 1em; font-weight: bold;">CANTIDAD</div>
+                        <div class="col-6" style="font-size: 2em; ">CADUCIDAD</div>
+                        <div class="col-6 text-right" style="font-size: 2em; ">CANTIDAD</div>
                     </div>
                     <div class="row">
-                        <div class="col-6" style="font-size: 1.5em; font-weight: bold;">
+                        <div class="col-6" style="font-size: 3em; font-weight: bold;">
                             <t t-if="line.lot_id.expiration_date">
-                                <span t-field="line.lot_id.expiration_date"></span>
+                                <span t-esc="line.lot_id.expiration_date.strftime('%d/%m/%Y')"/>
                             </t>
                         </div>
-                        <div class="col-6 text-right" style="font-size: 1.5em; font-weight: bold;">
+                        <div class="col-6 text-right" style="font-size: 3em; font-weight: bold;">
                             <span t-field="line.quantity"></span>
                         </div>
                     </div>
 
                 </div>
-                <hr style="border: none; border-top: 1px solid black; margin: 20px 0;"/>
+                <hr style="border: none; border-top: 1px solid black; margin: 20px 0 25px 0;"/>
             </t>
         </t>
     </template>

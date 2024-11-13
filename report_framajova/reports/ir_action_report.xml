@@ -13,12 +13,12 @@
     </record>
 
     <record id="stock_warehouse_label_report" model="ir.actions.report">
-        <field name="name">framajova label</field>
+        <field name="name">Label Framajova</field>
         <field name="model">stock.picking</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">report_framajova.framajova_label_report_document</field>
         <field name="report_file">report_framajova.framajova_label_report_document</field>
-        <field name="print_report_name">' Labels - %s - %s' % (object.partner_id.name or '', object.name)
+        <field name="print_report_name">'Labels - %s - %s' % (object.partner_id.name or '', object.name)
         </field>
         <field name="attachment">'Labels - %s - %s' % (object.partner_id.name or '', object.name)</field>
         <field name="binding_model_id" ref="stock.model_stock_picking"/>
