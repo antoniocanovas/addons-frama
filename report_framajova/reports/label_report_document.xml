@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="framajova_label_report_document">
+
+        <t t-foreach="docs" t-as="o">
+            <t t-set="lines" t-value="o.move_line_ids"/>
+            <t t-foreach="lines" t-as="line">
+
+                <t t-call="report_framajova.framajova_label_report" t-lang="o._get_report_lang()"/>
+
+            </t>
+        </t>
+
+    </template>
+
+    <template id="framajova_label_report">
+        <t t-call="web.html_container">
+            <t t-call="report_framajova.custom_report_layout">
+                <div class="container" style="width: 100%; font-family: Arial, sans-serif;">
+
+                    <!-- Sección de Descripción -->
+                    <div class="row">
+                        <div class="col-12" style="font-size: 1em; font-weight: bold;">DESCRIPCIÓN</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12" style="font-size: 1.5em; font-weight: bold; margin-bottom: 10px;">
+                            <span t-field="line.product_id.name"></span>
+                        </div>
+                    </div>
+                    <hr style="border: none; border-top: 1px solid black; margin: 20px 0;"/>
+
+                    <!-- Sección de Lote y Código -->
+                    <div class="row">
+                        <div class="col-6" style="font-size: 1em; font-weight: bold;">LOTE</div>
+                        <div class="col-6 text-right" style="font-size: 1em; font-weight: bold;">CÓDIGO</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6" style="font-size: 1.5em; font-weight: bold; margin-bottom: 10px;">
+                            <span t-field="line.lot_id.name"></span>
+                        </div>
+                        <div class="col-6 text-right" style="font-size: 1.5em; font-weight: bold; margin-bottom: 10px;">
+                            <span t-field="line.product_id.default_code"></span>
+                        </div>
+                    </div>
+                    <hr style="border: none; border-top: 1px solid black; margin: 5px 0;"/>
+
+                    <!-- Sección de Caducidad y Cantidad -->
+                    <div class="row">
+                        <div class="col-6" style="font-size: 1em; font-weight: bold;">CADUCIDAD</div>
+                        <div class="col-6 text-right" style="font-size: 1em; font-weight: bold;">CANTIDAD</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6" style="font-size: 1.5em; font-weight: bold;">
+                            <t t-if="line.lot_id.expiration_date">
+                                <span t-field="line.lot_id.expiration_date"></span>
+                            </t>
+                        </div>
+                        <div class="col-6 text-right" style="font-size: 1.5em; font-weight: bold;">
+                            <span t-field="line.quantity"></span>
+                        </div>
+                    </div>
+
+                </div>
+                <hr style="border: none; border-top: 1px solid black; margin: 20px 0;"/>
+            </t>
+        </t>
+    </template>
+
+
+    <template id="custom_report_layout">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <!-- Logo de la compañía en la esquina superior derecha -->
+                <t t-set="company" t-value="user.company_id"/>
+                <div class="row">
+                    <div class="col-9"></div>
+                    <div class="col-3">
+                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
+                             style="max-height: 60px;"
+                             alt="Logo"/>
+
+                    </div>
+                </div>
+
+                <t t-raw="0"/>
+            </div>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_product_label_landscape" model="report.paperformat">
+        <field name="name">Product Label 101x151 Landscape</field>
+        <field name="default" eval="False"/>
+        <field name="page_height">101</field> <!-- Altura en mm (horizontal) -->
+        <field name="page_width">151</field> <!-- Ancho en mm (horizontal) -->
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">5</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+    </record>
+
+    <record id="stock_warehouse_label_report" model="ir.actions.report">
+        <field name="name">framajova label</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">report_framajova.framajova_label_report_document</field>
+        <field name="report_file">report_framajova.framajova_label_report_document</field>
+        <field name="print_report_name">' Labels - %s - %s' % (object.partner_id.name or '', object.name)
+        </field>
+        <field name="attachment">'Labels - %s - %s' % (object.partner_id.name or '', object.name)</field>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id"
+               ref="paperformat_product_label_landscape"/> <!-- Aquí se vincula el formato de papel -->
+    </record>
+
+</odoo>

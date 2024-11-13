@@ -19,10 +19,11 @@
 #
 ##############################################################################
 
+
 {
     "name": "report framajova",
     "version": "1.0",
-    "depends": [],
+    "depends": ["product", "stock", "sale"],
     "author": "Punt Sistemes",
     "category": "Project",
     "website": "https://www.puntsistemes.es",
@@ -32,6 +33,8 @@
     "data": [
         "data/page_format.xml",
         "reports/frama_stock_report_delivery_has_serial_move_line.xml",
+        "reports/ir_action_report.xml",
+        "reports/label_report_document.xml",
     ],
     "demo": [],
     "installable": True,
