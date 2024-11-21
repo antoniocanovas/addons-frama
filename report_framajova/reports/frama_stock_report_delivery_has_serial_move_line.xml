@@ -16,7 +16,7 @@
         <xpath expr="//table[@name='stock_backorder_table']" position="attributes">
             <attribute name="t-if">1 == 0</attribute>
         </xpath>
-        <xpath expr="//p[contains(span, 'Remaining quantities not yet delivered:')]" position="attributes">
+        <xpath expr="//p[@class='mt-5']" position="attributes">
             <attribute name="t-if">1 == 0</attribute>
         </xpath>
 

@@ -52,7 +52,12 @@
                     <div class="row">
                         <div class="col-6" style="font-size: 3em; font-weight: bold;">
                             <t t-if="line.lot_id.expiration_date">
-                                <span t-esc="line.lot_id.expiration_date.strftime('%d/%m/%Y')"/>
+                                <t t-set="expiration_date" t-value="line.lot_id.expiration_date"/>
+                                <t t-set="expiration_date_plus_one"
+                                   t-value="expiration_date and expiration_date.replace(day=expiration_date.day + 1)"/>
+                                <span t-esc="expiration_date_plus_one.strftime('%d/%m/%Y') if expiration_date else ''"/>
+
+
                             </t>
                         </div>
                         <div class="col-6 text-right" style="font-size: 3em; font-weight: bold;">
