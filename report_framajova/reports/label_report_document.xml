@@ -5,8 +5,10 @@
         <t t-foreach="docs" t-as="o">
             <t t-set="lines" t-value="o.move_line_ids"/>
             <t t-foreach="lines" t-as="line">
+                <t t-foreach="line.move_id.labels" t-as="label">
 
-                <t t-call="report_framajova.framajova_label_report" t-lang="o._get_report_lang()"/>
+                    <t t-call="report_framajova.framajova_label_report" t-lang="o._get_report_lang()"/>
+                </t>
 
             </t>
         </t>
@@ -61,7 +63,16 @@
                             </t>
                         </div>
                         <div class="col-6 text-right" style="font-size: 3em; font-weight: bold;">
-                            <span t-field="line.quantity"></span>
+
+                            <t t-if="line.move_id.labels and int(line.move_id.labels) > 1">
+                                <span t-esc="line.quantity / line.move_id.labels"/>
+                            </t>
+
+                            <t t-if="line.move_id.labels and int(line.move_id.labels) == 1">
+                                <span t-esc="line.quantity"/>
+                            </t>
+
+
                         </div>
                     </div>
 
