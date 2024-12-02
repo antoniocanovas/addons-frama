@@ -66,10 +66,12 @@
 
                             <t t-if="line.move_id.labels and int(line.move_id.labels) > 1">
                                 <span t-esc="line.quantity / line.move_id.labels"/>
+                                <span t-esc="line.product_uom"/>
                             </t>
 
                             <t t-if="line.move_id.labels and int(line.move_id.labels) == 1">
                                 <span t-esc="line.quantity"/>
+                                <span t-esc="line.product_uom"/>
                             </t>
 
 
