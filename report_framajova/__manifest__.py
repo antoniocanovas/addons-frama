@@ -37,7 +37,6 @@
     """,
     "data": [
         "data/page_format.xml",
-        "views/stock_picking_views.xml",
         "reports/frama_stock_report_delivery_has_serial_move_line.xml",
         "reports/ir_action_report.xml",
         "reports/label_report_document.xml",

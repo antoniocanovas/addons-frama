@@ -25,6 +25,7 @@
         <field name="binding_type">report</field>
         <field name="paperformat_id"
                ref="paperformat_product_label_landscape"/> <!-- Aquí se vincula el formato de papel -->
+
     </record>
 
 </odoo>
