@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="framajova_label_report_document">
+        <t t-name="report_framajova.framajova_label_report_document">
+            <t t-foreach="docs" t-as="o">
+                <span t-esc="o.name"/>
 
-        <t t-foreach="docs" t-as="o">
-            <span t-esc="o.name"/>
+                <t t-foreach="o.move_ids" t-as="move_id">
+                    <t t-set="lines" t-value="move_id.move_line_ids"/>
 
-            <t t-foreach="o.move_ids" t-as="move_id">
-                <t t-set="lines" t-value="move_id.move_line_ids"/>
+                    <t t-if="int(move_id.product_packaging_quantity) != 0">
 
-                <t t-if="move_id.product_packaging_quantity and int(move_id.product_packaging_quantity) != 0">
+                        <t t-foreach="lines" t-as="line">
+                            <t t-foreach="range(int(line.quantity/(move_id.quantity / move_id.product_packaging_quantity or 1)))"
+                               t-as="label">
+                                <t t-call="report_framajova.framajova_label_report" t-lang="o._get_report_lang()"/>
+                            </t>
+                        </t>
+                    </t>
+                    <t t-if="int(move_id.product_packaging_quantity) == 0">
 
-                    <t t-foreach="lines" t-as="line">
-                        <t t-foreach="range(int(line.quantity/(move_id.quantity / move_id.product_packaging_quantity or 1)))"
-                           t-as="label">
+                        <t t-foreach="lines" t-as="line">
                             <t t-call="report_framajova.framajova_label_report" t-lang="o._get_report_lang()"/>
                         </t>
                     </t>
-                </t>
-                <t t-if="move_id.product_packaging_quantity and int(move_id.product_packaging_quantity) == 0">
 
-                    <t t-foreach="lines" t-as="line">
-                        <t t-call="report_framajova.framajova_label_report" t-lang="o._get_report_lang()"/>
-                    </t>
                 </t>
-
             </t>
         </t>
 
@@ -32,72 +33,75 @@
 
 
     <template id="framajova_label_report">
-        <t t-call="web.html_container">
-            <t t-call="report_framajova.custom_report_layout">
-                <div class="container" style="width: 100%; font-family: Arial, sans-serif;">
+        <t t-name="report_framajova.framajova_label_report">
+            <t t-call="web.html_container">
+                <t t-call="report_framajova.custom_report_layout">
+                    <div class="container" style="width: 100%; font-family: Arial, sans-serif;">
 
-                    <!-- Sección de Descripción -->
-                    <div class="row">
-                        <div class="col-12" style="font-size: 2em; ">DESCRIPCIÓN</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12" style="font-size: 3em; font-weight: bold; margin-bottom: 10px;">
-                            <span t-field="line.product_id.name"></span>
+                        <!-- Sección de Descripción -->
+                        <div class="row">
+                            <div class="col-12" style="font-size: 2em; ">DESCRIPCIÓN</div>
                         </div>
+                        <div class="row">
+                            <div class="col-12" style="font-size: 3em; font-weight: bold; margin-bottom: 10px;">
+                                <span t-field="line.product_id.name"/>
+                            </div>
+                        </div>
+                        <hr style="border: none; border-top: 1px solid black; margin: 20px 0 25px 0;"/>
+
+                        <!-- Sección de Lote y Código -->
+                        <div class="row">
+                            <div class="col-6" style="font-size: 2em; ">LOTE</div>
+                            <div class="col-6 text-right" style="font-size: 2em; ">CÓDIGO</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6" style="font-size: 3em; font-weight: bold; margin-bottom: 10px;">
+                                <span t-field="line.lot_id.name"/>
+                            </div>
+                            <div class="col-6 text-right"
+                                 style="font-size: 3em; font-weight: bold; margin-bottom: 10px;">
+                                <span t-field="line.product_id.default_code"/>
+                            </div>
+                        </div>
+                        <hr style="border: none; border-top: 1px solid black; margin: 5px 0 25px 0;"/>
+
+                        <!-- Sección de Caducidad y Cantidad -->
+                        <div class="row">
+                            <div class="col-6" style="font-size: 2em; ">CADUCIDAD</div>
+                            <div class="col-6 text-right" style="font-size: 2em; ">CANTIDAD</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6" style="font-size: 3em; font-weight: bold;">
+                                <t t-if="line.lot_id.expiration_date">
+                                    <t t-set="expiration_date" t-value="line.lot_id.expiration_date"/>
+                                    <t t-set="expiration_date_plus_one"
+                                       t-value="expiration_date and expiration_date.replace(day=expiration_date.day + 1)"/>
+                                    <span t-esc="expiration_date_plus_one.strftime('%d/%m/%Y') if expiration_date else ''"/>
+
+
+                                </t>
+                            </div>
+                            <div class="col-6 text-right" style="font-size: 3em; font-weight: bold;">
+                                <t t-if="line.move_id.product_packaging_quantity and int(line.move_id.product_packaging_quantity) &gt; 0">
+                                    <t t-set="factor"
+                                       t-value="(line.quantity / line.move_id.quantity if line.move_id.quantity else 1)"/>
+                                    <span t-esc="line.quantity / (line.move_id.product_packaging_quantity * (float(factor) if factor else 1))"/>
+                                    <span t-esc="line.product_uom_id.name"/>
+
+
+                                </t>
+                                <t t-if="int(line.move_id.product_packaging_quantity) == 0">
+                                    <span t-esc="line.quantity"/>
+                                    <span t-esc="line.product_uom_id.name"/>
+                                </t>
+
+
+                            </div>
+                        </div>
+
                     </div>
                     <hr style="border: none; border-top: 1px solid black; margin: 20px 0 25px 0;"/>
-
-                    <!-- Sección de Lote y Código -->
-                    <div class="row">
-                        <div class="col-6" style="font-size: 2em; ">LOTE</div>
-                        <div class="col-6 text-right" style="font-size: 2em; ">CÓDIGO</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6" style="font-size: 3em; font-weight: bold; margin-bottom: 10px;">
-                            <span t-field="line.lot_id.name"></span>
-                        </div>
-                        <div class="col-6 text-right" style="font-size: 3em; font-weight: bold; margin-bottom: 10px;">
-                            <span t-field="line.product_id.default_code"></span>
-                        </div>
-                    </div>
-                    <hr style="border: none; border-top: 1px solid black; margin: 5px 0 25px 0;"/>
-
-                    <!-- Sección de Caducidad y Cantidad -->
-                    <div class="row">
-                        <div class="col-6" style="font-size: 2em; ">CADUCIDAD</div>
-                        <div class="col-6 text-right" style="font-size: 2em; ">CANTIDAD</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6" style="font-size: 3em; font-weight: bold;">
-                            <t t-if="line.lot_id.expiration_date">
-                                <t t-set="expiration_date" t-value="line.lot_id.expiration_date"/>
-                                <t t-set="expiration_date_plus_one"
-                                   t-value="expiration_date and expiration_date.replace(day=expiration_date.day + 1)"/>
-                                <span t-esc="expiration_date_plus_one.strftime('%d/%m/%Y') if expiration_date else ''"/>
-
-
-                            </t>
-                        </div>
-                        <div class="col-6 text-right" style="font-size: 3em; font-weight: bold;">
-                            <t t-if="line.move_id.product_packaging_quantity and int(line.move_id.product_packaging_quantity) > 0">
-                                <t t-set="factor"
-                                   t-value="(line.quantity / line.move_id.quantity if line.move_id.quantity else 1)"/>
-                                <span t-esc="line.quantity / (line.move_id.product_packaging_quantity * (float(factor) if factor else 1))"/>
-                                <span t-esc="line.move_id.product_uom_id.name"/>
-
-
-                            </t>
-                            <t t-if="line.move_id.product_packaging_quantity and int(line.move_id.product_packaging_quantity) == 0">
-                                <span t-esc="line.quantity"/>
-                                <span t-esc="line.move_id.product_uom_id.name"/>
-                            </t>
-
-
-                        </div>
-                    </div>
-
-                </div>
-                <hr style="border: none; border-top: 1px solid black; margin: 20px 0 25px 0;"/>
+                </t>
             </t>
         </t>
     </template>
