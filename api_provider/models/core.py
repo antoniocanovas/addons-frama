@@ -5,9 +5,9 @@ from odoo.http import request
 class ContactsAPI(http.Controller):
 
     @http.route('/api/contacts', type='json', auth='none', methods=['POST'], csrf=False)
-    def get_contacts(self, **kwargs):
-        # Extrae el token del cuerpo de la solicitud
-        token = kwargs.get('token')
+    def get_contacts(self, **kw):
+        # Extraer el token del cuerpo de la solicitud
+        token = kw.get('token')
 
         if not token:
             return {
@@ -15,7 +15,7 @@ class ContactsAPI(http.Controller):
                 'code': 400
             }
 
-        # Verifica el token
+        # Validar el token
         valid_token = "123456789"
         if token != valid_token:
             return {
@@ -23,7 +23,7 @@ class ContactsAPI(http.Controller):
                 'code': 403
             }
 
-        # Obtén los contactos
+        # Obtener los contactos
         contacts = request.env['res.partner'].sudo().search([])
         contact_data = [{
             'name': contact.name,
@@ -34,4 +34,3 @@ class ContactsAPI(http.Controller):
         return {
             'contacts': contact_data
         }
-
