@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="account_in_invoice_bill_tree_inherit" model="ir.ui.view">
+        <field name="name">Account.InInvoice.Bill.Tree.Inherit</field>
+        <field name="model">account.move</field>
+        <field name="type">tree</field>
+        <field name="inherit_id" ref="account.view_in_invoice_bill_tree"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//tree[1]/field[@name='amount_total_in_currency_signed']" position="after">
+                <field name="edi_error_message" optional="show"/>
+                <field name="edi_blocking_level" optional="show"/>
+            </xpath>
+
+        </field>
+        <field name="priority">99</field>
+    </record>
+
+</odoo>
