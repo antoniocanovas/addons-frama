@@ -21,7 +21,7 @@
 
 
 {
-    "name": "report framajova",
+    "name": "custom_framajova",
     "version": "1.0",
     "depends": [
         "sale_management",
@@ -31,7 +31,7 @@
     "category": "Project",
     "website": "https://www.puntsistemes.es",
     "description": """
-        This module links TASKS and SIGN REQUEST. 
+        custom module for Framajova
     """,
     "data": [
         "views/account_invoice.xml",
