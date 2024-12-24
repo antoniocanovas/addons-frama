@@ -7,7 +7,7 @@ class Odoo1ConnectionConfig(models.Model):
     instancias Odoo 1 que se conectan a Odoo 2.
     """
 
-    _name = "odoo2.odoo1.config"
+    _name = "api_provider.odoo1.config"
     _description = "Configuración de múltiples Odoo 1"
 
     name = fields.Char(string="Nombre", required=True)
