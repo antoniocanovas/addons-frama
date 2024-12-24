@@ -1,4 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_res_partner,res.partner,base.model_res_partner,,1,0,0,0
-
-
+access_odoo2_log,access_odoo2_log,model_odoo2_log,base.group_user,1,1,1,1
+access_odoo2_odoo1_config,access_odoo2_odoo1_config,model_odoo2_odoo1_config,base.group_user,1,1,1,1

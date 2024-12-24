@@ -1,0 +1,38 @@
+<odoo>
+    <record id="view_odoo1_config_tree" model="ir.ui.view">
+        <field name="name">odoo1.config.tree</field>
+        <field name="model">odoo2.odoo1.config</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="token_odoo1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_odoo1_config_form" model="ir.ui.view">
+        <field name="name">odoo1.config.form</field>
+        <field name="model">odoo2.odoo1.config</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="token_odoo1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_odoo2_root" name="Odoo2" sequence="10"/>
+    <menuitem id="menu_odoo2_config" name="Config Odoo1"
+              parent="menu_odoo2_root" sequence="20"
+              action="action_odoo1_config"/>
+
+    <record id="action_odoo1_config" model="ir.actions.act_window">
+        <field name="name">Config Odoo1</field>
+        <field name="res_model">odoo2.odoo1.config</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
