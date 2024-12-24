@@ -1,22 +1,30 @@
 <odoo>
+    <!-- ==========================
+         1) VISTA TREE
+    =========================== -->
     <record id="view_odoo1_config_tree" model="ir.ui.view">
         <field name="name">odoo1.config.tree</field>
-        <field name="model">odoo2.odoo1.config</field>
+        <field name="model">api_provider.odoo1.config</field>
         <field name="arch" type="xml">
             <tree>
+                <!-- Ajusta los campos según tu modelo -->
                 <field name="name"/>
                 <field name="token_odoo1"/>
             </tree>
         </field>
     </record>
 
+    <!-- ==========================
+         2) VISTA FORM
+    =========================== -->
     <record id="view_odoo1_config_form" model="ir.ui.view">
         <field name="name">odoo1.config.form</field>
-        <field name="model">odoo2.odoo1.config</field>
+        <field name="model">api_provider.odoo1.config</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
                     <group>
+                        <!-- Ajusta los campos según tu modelo -->
                         <field name="name"/>
                         <field name="token_odoo1"/>
                     </group>
@@ -25,14 +33,30 @@
         </field>
     </record>
 
-    <menuitem id="menu_odoo2_root" name="Odoo2" sequence="10"/>
-    <menuitem id="menu_odoo2_config" name="Config Odoo1"
-              parent="menu_odoo2_root" sequence="20"
-              action="action_odoo1_config"/>
-
+    <!-- ==========================
+         3) ACCIÓN (Act Window)
+    =========================== -->
     <record id="action_odoo1_config" model="ir.actions.act_window">
         <field name="name">Config Odoo1</field>
-        <field name="res_model">odoo2.odoo1.config</field>
+        <!-- Ajusta "api_provider.odoo1.config" si tu modelo se llama distinto -->
+        <field name="res_model">api_provider.odoo1.config</field>
         <field name="view_mode">tree,form</field>
     </record>
+
+    <!-- ==========================
+         4) MENÚS
+    =========================== -->
+
+    <!-- Menú raíz (si no lo defines en otro lugar). 
+         Si ya tienes un menú raíz, no repitas este record. -->
+    <menuitem id="menu_odoo2_root"
+              name="Odoo2"
+              sequence="10"/>
+
+    <!-- Submenú que usa la acción de arriba -->
+    <menuitem id="menu_odoo2_config"
+              name="Config Odoo1"
+              parent="menu_odoo2_root"
+              action="action_odoo1_config"
+              sequence="20"/>
 </odoo>
