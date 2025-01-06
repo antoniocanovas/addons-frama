@@ -45,6 +45,16 @@
         </xpath>
 
     </template>
+    <template id="frama_stock_account_report_invoice_inh" inherit_id="stock_account.stock_account_report_invoice_document" priority="999">
+        <xpath expr="//div[@id='right-elements']" position="before">
+        <style>
+            table[name="invoice_snln_table"] {
+                width: 100% !important;
+            }
+        </style>
+    </xpath>
+
+    </template>
 
 
 </odoo>
