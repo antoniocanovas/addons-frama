@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_odoo2_log,access_odoo2_log,model_odoo2_log,base.group_user,1,1,1,1
-access_api_provider_odoo1_config,access_api_provider_odoo1_config,model_api_provider_odoo1_config,base.group_user,1,1,1,1
