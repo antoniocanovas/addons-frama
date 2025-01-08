@@ -31,7 +31,8 @@
     "category": 'Project',
     "website": "https://www.puntsistemes.es",
     "description": """
-        This module links TASKS and SIGN REQUEST. 
+        Permite asignar una tarea en el momento de enviar un documento desde la aplicacion firmas. 
+        Los documentos a firmar de cada tarea son consultables desde una pestaña en la tarea
     """,
     "data": [
         'views/sign_request_views.xml',
