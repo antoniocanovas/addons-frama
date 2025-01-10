@@ -9,15 +9,22 @@ class ProductLabelLayoutInherited(models.TransientModel):
         selection_add=[("101x151", "101 x 151 Custom Format")],
         default="101x151",
         ondelete={"101x151": "set default"},
+
     )
 
     def _prepare_report_data(self):
-        # Llamada al método original para obtener xml_id y data iniciales
+        # Llamar al método original
         xml_id, data = super()._prepare_report_data()
 
-        # Modificar xml_id si el formato es 101x151
+        # Personalizar para 101x151
         if self.print_format == "101x151":
+            xml_id = "report_framajova.stock_warehouse_label_report"
+            if not data.get("active_ids"):
+                data["active_ids"] = self.env.context.get("active_ids", [])
+            # Asegurarse de pasar docids correctamente
+            if not data["active_ids"]:
+                raise ValueError("No active_ids found in context or data!")
 
-            xml_id = "report_framajova.report_action_product_template_label_101x151"
-
+        print(f"Prepared Data: {data}")
         return xml_id, data
+

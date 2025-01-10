@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="paperformat_product_label_landscape" model="report.paperformat">
-        <field name="name">Product Label 101x151 Landscape</field>
+    <record id="framajova_paperformat_product_label_landscape" model="report.paperformat">
+        <field name="name">Custom Product Label 101x151</field>
         <field name="default" eval="False"/>
-        <field name="page_height">101</field> <!-- Altura en mm (horizontal) -->
-        <field name="page_width">151</field> <!-- Ancho en mm (horizontal) -->
-        <field name="orientation">Landscape</field>
+        <field name="orientation">Landscape</field> <!-- Opcional si el ancho es mayor -->
         <field name="margin_top">20</field>
         <field name="margin_bottom">5</field>
         <field name="margin_left">5</field>
         <field name="margin_right">5</field>
     </record>
+
 
     <record id="stock_warehouse_label_report" model="ir.actions.report">
         <field name="name">Label Framajova</field>
@@ -24,7 +23,7 @@
         <field name="binding_model_id" ref="stock.model_stock_picking"/>
         <field name="binding_type">report</field>
         <field name="paperformat_id"
-               ref="paperformat_product_label_landscape"/> <!-- Aquí se vincula el formato de papel -->
+               ref="framajova_paperformat_product_label_landscape"/> <!-- Aquí se vincula el formato de papel -->
 
     </record>
 

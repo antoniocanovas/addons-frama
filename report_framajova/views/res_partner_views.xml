@@ -1,0 +1,12 @@
+<odoo>
+    <record id="view_res_partner_form_framajova_inherited" model="ir.ui.view">
+        <field name="name">res.partner.form.inherited</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='industry_id']" position="after">
+                <field name="purchase_without_price"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

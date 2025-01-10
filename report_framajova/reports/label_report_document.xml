@@ -2,6 +2,7 @@
 <odoo>
     <template id="framajova_label_report_document">
         <t t-name="report_framajova.framajova_label_report_document">
+
             <t t-foreach="docs" t-as="o">
                 <span t-esc="o.name"/>
 
@@ -38,9 +39,9 @@
                 <t t-call="report_framajova.custom_report_layout">
                     <div class="container" style="width: 100%; font-family: Arial, sans-serif;">
 
-                        <!-- Sección de Descripción -->
+
                         <div class="row">
-                            <div class="col-12" style="font-size: 2em; ">DESCRIPCIÓN</div>
+                            <div class="col-12" style="font-size: 2em; ">DESCRIPTION</div>
                         </div>
                         <div class="row">
                             <div class="col-12" style="font-size: 3em; font-weight: bold; margin-bottom: 10px;">
@@ -49,10 +50,10 @@
                         </div>
                         <hr style="border: none; border-top: 1px solid black; margin: 20px 0 25px 0;"/>
 
-                        <!-- Sección de Lote y Código -->
+
                         <div class="row">
-                            <div class="col-6" style="font-size: 2em; ">LOTE</div>
-                            <div class="col-6 text-right" style="font-size: 2em; ">CÓDIGO</div>
+                            <div class="col-6" style="font-size: 2em; ">LOT</div>
+                            <div class="col-6 text-right" style="font-size: 2em; ">CODE</div>
                         </div>
                         <div class="row">
                             <div class="col-6" style="font-size: 3em; font-weight: bold; margin-bottom: 10px;">
@@ -65,10 +66,10 @@
                         </div>
                         <hr style="border: none; border-top: 1px solid black; margin: 5px 0 25px 0;"/>
 
-                        <!-- Sección de Caducidad y Cantidad -->
+
                         <div class="row">
-                            <div class="col-6" style="font-size: 2em; ">CADUCIDAD</div>
-                            <div class="col-6 text-right" style="font-size: 2em; ">CANTIDAD</div>
+                            <div class="col-6" style="font-size: 2em;">EXPIRATION DATE</div>
+                            <div class="col-6 text-right" style="font-size: 2em;">QUANTITY</div>
                         </div>
                         <div class="row">
                             <div class="col-6" style="font-size: 3em; font-weight: bold;">
@@ -77,8 +78,6 @@
                                     <t t-set="expiration_date_plus_one"
                                        t-value="expiration_date and expiration_date.replace(day=expiration_date.day + 1)"/>
                                     <span t-esc="expiration_date_plus_one.strftime('%d/%m/%Y') if expiration_date else ''"/>
-
-
                                 </t>
                             </div>
                             <div class="col-6 text-right" style="font-size: 3em; font-weight: bold;">

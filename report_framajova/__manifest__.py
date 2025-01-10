@@ -36,8 +36,9 @@
         This module links TASKS and SIGN REQUEST. 
     """,
     "data": [
-        "data/page_format.xml",
-        "reports/frama_stock_report_delivery_has_serial_move_line.xml",
+        'views/res_partner_views.xml',
+        "reports/stock_report_delivery_has_serial_move_line.xml",
+        "reports/report_purchaseorder_document.xml",
         "reports/ir_action_report.xml",
         "reports/label_report_document.xml",
     ],

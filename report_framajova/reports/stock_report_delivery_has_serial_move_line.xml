@@ -1,60 +1,48 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <odoo>
-
-
-    <template id="frama_stock_report_delivery_has_serial_move_line"
+    <template id="framajova_stock_report_delivery_has_serial_move_line"
               inherit_id="product_expiry.stock_report_delivery_has_serial_move_line_inherit_product_expiry"
               priority="999">
-
         <xpath expr="//span[@t-field='move_line.lot_id.expiration_date']" position="attributes">
             <attribute name="t-options">{"widget": "date", "date_format": "%%d/%%m/%%Y"}</attribute>
         </xpath>
-
     </template>
-
-
-
-    <template id="report_delivery_inh"
+    <template id="framajova_report_delivery_inh"
               inherit_id="stock.report_delivery_document" priority="99">
         <xpath expr="//table[@name='stock_move_line_table']/thead/tr" position="inside">
             <th class="text-center">
                 <strong>Production date</strong>
             </th>
-
         </xpath>
     </template>
-
-
-    <template id="report_delivery_has_serial_move_line_inh"
+    <template id="framajova_report_delivery_has_serial_move_line_inh"
               inherit_id="stock.stock_report_delivery_has_serial_move_line" priority="99">
         <xpath expr="//t[@t-name='stock.stock_report_delivery_has_serial_move_line']" position="inside">
             <td class="text-center">
                 <span t-field="move_line.lot_id.create_date"
                       t-options='{"widget": "date", "date_format": "%%d/%%m/%%Y"}'/>
             </td>
-
         </xpath>
     </template>
-
-    <template id="add_invisible_to_backorder_div" inherit_id="stock.report_delivery_document" priority="999">
+    <template id="framajova_add_invisible_to_backorder_div" inherit_id="stock.report_delivery_document" priority="999">
         <xpath expr="//table[@name='stock_backorder_table']" position="attributes">
             <attribute name="t-if">1 == 0</attribute>
         </xpath>
         <xpath expr="//p[@class='mt-5']" position="attributes">
             <attribute name="t-if">1 == 0</attribute>
         </xpath>
-
     </template>
-    <template id="frama_stock_account_report_invoice_inh" inherit_id="stock_account.stock_account_report_invoice_document" priority="999">
+    <template id="frama_stock_account_report_invoice_inh"
+              inherit_id="stock_account.stock_account_report_invoice_document" priority="999">
         <xpath expr="//div[@id='right-elements']" position="before">
-        <style>
-            table[name="invoice_snln_table"] {
+            <style>
+                table[name="invoice_snln_table"] {
                 width: 100% !important;
-            }
-        </style>
-    </xpath>
-
+                }
+            </style>
+        </xpath>
+        <xpath expr="//table[@name='invoice_snln_table']//td[last()]" position="attributes">
+            <attribute name="class" add="text-end"/>
+        </xpath>
     </template>
-
-
 </odoo>
