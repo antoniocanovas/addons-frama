@@ -37,6 +37,7 @@
     """,
     "data": [
         'views/res_partner_views.xml',
+        "reports/report_invoice_document.xml",
         "reports/stock_report_delivery_has_serial_move_line.xml",
         "reports/report_purchaseorder_document.xml",
         "reports/ir_action_report.xml",

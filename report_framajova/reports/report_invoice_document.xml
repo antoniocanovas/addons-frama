@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <template id="report_invoice_document_inherit" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@name='comment']" position="after">
+            <t t-set="grouped_sml_values" t-value="json.loads(o.sml_ids or '{}')"/>
+            <t t-if="grouped_sml_values">
+                <t t-foreach="grouped_sml_values.items()" t-as="group">
+                    <!-- Agrupa encabezado y tabla en un contenedor -->
+                    <div style="page-break-inside: avoid;">
+                        <h5>
+                            <strong>Albarán:</strong>
+                            <t t-esc="group[0]"/>
+                            <span t-if="group[1] and group[1][0]['date']">
+                                (<t t-esc="group[1][0]['date']"/>)
+                            </span>
+                        </h5>
+                        <table class="table table-sm mt-2" style="width: 100%;" name="invoice_snln_table">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th class="text-end">Cantidad</th>
+                                    <th class="text-end">SN/LN</th>
+                                    <th class="text-end">Fecha Expiración</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="group[1]">
+                                    <tr t-foreach="group[1]" t-as="sml_line">
+                                        <td>
+                                            <t t-esc="sml_line['product_name']"/>
+                                        </td>
+                                        <td class="text-end">
+                                            <t t-esc="sml_line['quantity']"/>
+                                            <t t-esc="sml_line['uom_name']"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="sml_line['lot_name']"/>
+                                        </td>
+                                        <td class="text-end">
+                                            <t t-esc="sml_line['expiration_date']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <t t-else="">
+                                    <tr>
+                                        <td colspan="4" class="text-center">
+                                            No hay datos disponibles.
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </xpath>
+    </template>
+</odoo>

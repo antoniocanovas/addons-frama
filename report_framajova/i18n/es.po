@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-10 10:39+0000\n"
-"PO-Revision-Date: 2025-01-10 11:43+0100\n"
+"POT-Creation-Date: 2025-01-13 15:34+0000\n"
+"PO-Revision-Date: 2025-01-13 16:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -27,6 +27,11 @@ msgstr ""
 "        "
 
 #. module: report_framajova
+#: model_terms:ir.ui.view,arch_db:report_framajova.report_invoice_document_inherit
+msgid "<strong>Albarán:</strong>"
+msgstr "<strong>Albarán:</strong>"
+
+#. module: report_framajova
 #: model_terms:ir.ui.view,arch_db:report_framajova.framajova_report_delivery_inh
 msgid "<strong>Production date</strong>"
 msgstr "<strong>Fecha de producción</strong>"
@@ -41,6 +46,11 @@ msgstr "Habilita el pedido de compra sin valorar."
 #: model_terms:ir.ui.view,arch_db:report_framajova.framajova_label_report
 msgid "CODE"
 msgstr "CÓDIGO"
+
+#. module: report_framajova
+#: model_terms:ir.ui.view,arch_db:report_framajova.report_invoice_document_inherit
+msgid "Cantidad"
+msgstr "Cantidad"
 
 #. module: report_framajova
 #: model:ir.model,name:report_framajova.model_res_partner
@@ -58,6 +68,23 @@ msgid "EXPIRATION DATE"
 msgstr "FECHA DE CADUCIDAD"
 
 #. module: report_framajova
+#: model_terms:ir.ui.view,arch_db:report_framajova.report_invoice_document_inherit
+msgid "Fecha Expiración"
+msgstr "Fecha Expiración"
+
+#. module: report_framajova
+#: model:ir.model.fields,field_description:report_framajova.field_account_bank_statement_line__sml_ids
+#: model:ir.model.fields,field_description:report_framajova.field_account_move__sml_ids
+#: model:ir.model.fields,field_description:report_framajova.field_account_payment__sml_ids
+msgid "Grouped Stock Move Lines"
+msgstr "Líneas de movimiento  agrupadas"
+
+#. module: report_framajova
+#: model:ir.model,name:report_framajova.model_account_move
+msgid "Journal Entry"
+msgstr "Asiento contable"
+
+#. module: report_framajova
 #: model_terms:ir.ui.view,arch_db:report_framajova.framajova_label_report
 msgid "LOT"
 msgstr "LOTE"
@@ -73,6 +100,16 @@ msgid "Logo"
 msgstr "Logo"
 
 #. module: report_framajova
+#: model_terms:ir.ui.view,arch_db:report_framajova.report_invoice_document_inherit
+msgid "No hay datos disponibles."
+msgstr "No hay datos disponibles."
+
+#. module: report_framajova
+#: model_terms:ir.ui.view,arch_db:report_framajova.report_invoice_document_inherit
+msgid "Producto"
+msgstr "Producto"
+
+#. module: report_framajova
 #: model:ir.model.fields,field_description:report_framajova.field_res_partner__purchase_without_price
 #: model:ir.model.fields,field_description:report_framajova.field_res_users__purchase_without_price
 msgid "Purchase Without Price"
@@ -82,3 +119,8 @@ msgstr "Compra sin valorar"
 #: model_terms:ir.ui.view,arch_db:report_framajova.framajova_label_report
 msgid "QUANTITY"
 msgstr "CANTIDAD"
+
+#. module: report_framajova
+#: model_terms:ir.ui.view,arch_db:report_framajova.report_invoice_document_inherit
+msgid "SN/LN"
+msgstr "SN/LN"
