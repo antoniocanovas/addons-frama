@@ -26,4 +26,6 @@ class AccountMoveInherit(models.Model):
                             'date': sml.date.strftime('%d/%m/%Y') if sml.date else '',
                             'expiration_date': sml.lot_id.expiration_date.strftime('%d/%m/%Y') if sml.lot_id.expiration_date else '',
                         })
-            record.sml_ids = json.dumps(grouped_data)
+            # Ordenar las claves del diccionario alfabéticamente
+            sorted_grouped_data = dict(sorted(grouped_data.items()))
+            record.sml_ids = json.dumps(sorted_grouped_data)

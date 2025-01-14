@@ -33,7 +33,7 @@
                                             <t t-esc="sml_line['quantity']"/>
                                             <t t-esc="sml_line['uom_name']"/>
                                         </td>
-                                        <td>
+                                        <td class="text-end">
                                             <t t-esc="sml_line['lot_name']"/>
                                         </td>
                                         <td class="text-end">
