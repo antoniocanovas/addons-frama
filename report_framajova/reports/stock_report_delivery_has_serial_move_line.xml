@@ -10,7 +10,7 @@
     <template id="framajova_report_delivery_inh"
               inherit_id="stock.report_delivery_document" priority="99">
         <xpath expr="//table[@name='stock_move_line_table']/thead/tr" position="inside">
-            <th class="text-center">
+            <th class="text-center" t-if="move_line.lot_id.mrp_production_id.date_finished">
                 <strong>Production date</strong>
             </th>
         </xpath>
@@ -18,8 +18,8 @@
     <template id="framajova_report_delivery_has_serial_move_line_inh"
               inherit_id="stock.stock_report_delivery_has_serial_move_line" priority="99">
         <xpath expr="//t[@t-name='stock.stock_report_delivery_has_serial_move_line']" position="inside">
-            <td class="text-center">
-                <span t-field="move_line.lot_id.create_date"
+            <td class="text-center" t-if="move_line.lot_id.mrp_production_id.date_finished">
+                <span t-if="move_line.lot_id.mrp_production_id.date_finished" t-field="move_line.lot_id.mrp_production_id.date_finished"
                       t-options='{"widget": "date", "date_format": "%%d/%%m/%%Y"}'/>
             </td>
         </xpath>
