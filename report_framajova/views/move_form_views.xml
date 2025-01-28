@@ -1,0 +1,17 @@
+<odoo>
+    <record id="view_account_move_form_framajova_inherit" model="ir.ui.view">
+        <field name="name">view.account.move.form.framajova.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+                <page string="Albaranes para imprimir" name="albaranes_para_imprimir">
+                    <field name="sml_m2m_domain_ids" invisible="1"/>
+                    <group colspan="2" name="grupo_albaranes_para_imprimir">
+                        <field name="sml_m2m_ids" widget="many2many" domain="[('id', 'in', sml_m2m_domain_ids)]"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
