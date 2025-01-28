@@ -13,6 +13,9 @@
             <th class="text-center" >
                 <strong>Production date</strong>
             </th>
+            <th class="text-center" >
+                <strong>Expiration date</strong>
+            </th>
         </xpath>
     </template>
     <template id="framajova_report_delivery_has_serial_move_line_inh"
@@ -20,6 +23,11 @@
         <xpath expr="//t[@t-name='stock.stock_report_delivery_has_serial_move_line']" position="inside">
             <td class="text-center" >
                 <span t-if="move_line.lot_id.mrp_production_id.date_finished" t-field="move_line.lot_id.mrp_production_id.date_finished"
+                      t-options='{"widget": "date", "date_format": "%%d/%%m/%%Y"}'/>
+
+            </td>
+            <td>
+                <span t-if="move_line.lot_id.expiration_date" t-field="move_line.lot_id.expiration_date"
                       t-options='{"widget": "date", "date_format": "%%d/%%m/%%Y"}'/>
             </td>
         </xpath>

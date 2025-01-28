@@ -1,0 +1,13 @@
+<odoo>
+    <record id="view_work_center_form_framajova_inherit" model="ir.ui.view">
+        <field name="name">view.work.center.form.framajova.inherit</field>
+        <field name="model">mrp.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_workcenter_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='capacity']/div[2]"
+                   position="after">
+                <field name="update_lot_dates"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
