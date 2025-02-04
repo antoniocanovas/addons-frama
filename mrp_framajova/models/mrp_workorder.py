@@ -28,5 +28,6 @@ class MrpWorkorder(models.Model):
                     'expiration_date': expiration_date,
                     'use_date': use_date,
                     'removal_date': removal_date,
-                    'alert_date': alert_date
+                    'alert_date': alert_date,
+                    'cooking_date': local_time,
                 })

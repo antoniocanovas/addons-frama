@@ -10,6 +10,10 @@ class StockLot(models.Model):
         compute="_compute_mrp_production_id",
     )
 
+    cooking_date = fields.Datetime(string='Cooking Date')
+
+
+
     def _compute_mrp_production_id(self):
         for record in self:
             production = self.env['mrp.production'].search_read([('lot_producing_id', '=', record.id)], ['id'], limit=1)

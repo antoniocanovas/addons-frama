@@ -28,6 +28,8 @@
         "account",
         "stock",
         "web",
+        "mrp",
+        "mrp_framajova",
     ],
     "author": "Punt Sistemes",
     "category": "Project",

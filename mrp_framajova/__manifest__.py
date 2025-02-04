@@ -34,6 +34,7 @@
     """,
     "data": [
         'views/mrp_workcenter_views.xml',
+        'views/stock_lot_views.xml',
 
     ],
     "demo": [],
