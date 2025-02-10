@@ -6,9 +6,10 @@ class MrpWorkorder(models.Model):
     _inherit = 'mrp.workorder'
 
 
-    @api.constrains('state')
+    @api.constrains('date_finished')
     def update_lot_dates(self):
         local_time = datetime.datetime.now()
+        print(self)
         for record in self:
             # Verificamos todas las condiciones necesarias
             if (
