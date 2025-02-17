@@ -100,6 +100,22 @@
 
                     </div>
                     <hr style="border: none; border-top: 1px solid black; margin: 20px 0 25px 0;"/>
+                    <div class="row">
+                        <div class="col-12 text-center" style=" font-weight: bold;">
+                            <t t-if="line.lot_id.name">
+                                <!-- Asignamos el valor del código de barras a una variable -->
+                                <t t-set="barcode_value" t-value="line.lot_id.name"/>
+                                <!-- Se renderiza la imagen del código de barras usando el widget barcode -->
+                                <div t-out="barcode_value" t-options="{
+                                    'widget': 'barcode',
+                                    'symbology': 'Code128',
+                                    'img_style': 'max-width:100%;'
+                                }"/>
+                                <br/>
+                                <span t-field="line.lot_id.name"/>
+                            </t>
+                        </div>
+                    </div>
                 </t>
             </t>
         </t>
