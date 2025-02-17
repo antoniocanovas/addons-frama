@@ -1,7 +1,7 @@
 from odoo import models, fields, api
 import datetime
 
-from src.core.odoo.addons.test_convert.tests.test_env import record
+
 
 
 class MrpWorkorder(models.Model):
