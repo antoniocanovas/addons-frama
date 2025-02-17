@@ -2,46 +2,36 @@
 <odoo>
     <template id="framajova_label_report_document">
         <t t-name="report_framajova.framajova_label_report_document">
+            <t t-name="report_framajova.framajova_label_report_document">
+                <t t-foreach="docs" t-as="o">
+                    <span t-esc="o.name"/>
 
-            <t t-foreach="docs" t-as="o">
-                <span t-esc="o.name"/>
+                    <t t-foreach="o.move_ids" t-as="move_id">
+                        <t t-set="lines" t-value="move_id.move_line_ids"/>
 
-                <t t-foreach="o.move_ids" t-as="move_id">
-                    <t t-set="lines" t-value="move_id.move_line_ids"/>
+                        <t t-if="int(move_id.product_packaging_quantity) != 0">
 
-                    <t t-if="int(move_id.product_packaging_quantity) != 0">
+                            <t t-foreach="lines" t-as="line">
 
-                        <t t-foreach="lines" t-as="line">
-                            <t t-set="num_labels"
-                               t-value="(int(line.quantity / move_id.product_packaging_quantity) if (line.quantity % move_id.product_packaging_quantity) == 0 else int(line.quantity / move_id.product_packaging_quantity) + 1)"/>
-                            <t t-call="report_framajova.framajova_labels_container" t-lang="o._get_report_lang()"/>
+                                <t t-set="denom"
+                                   t-value="(move_id.quantity / move_id.product_packaging_quantity) or 1"/>
+                                <t t-set="ceil_value" t-value="int(((line.quantity - 1) // denom) + 1)"/>
+                                <t t-foreach="range(ceil_value)"
+                                   t-as="label">
 
+                                    <t t-call="report_framajova.framajova_label_report" t-lang="o._get_report_lang()"/>
+                                </t>
+                            </t>
                         </t>
-                    </t>
-                    <t t-if="int(move_id.product_packaging_quantity) == 0">
+                        <t t-if="int(move_id.product_packaging_quantity) == 0">
 
-                        <t t-foreach="lines" t-as="line">
-                            <t t-call="report_framajova.framajova_label_report" t-lang="o._get_report_lang()"/>
+                            <t t-foreach="lines" t-as="line">
+                                <t t-call="report_framajova.framajova_label_report" t-lang="o._get_report_lang()"/>
+                            </t>
                         </t>
-                    </t>
 
+                    </t>
                 </t>
-            </t>
-        </t>
-
-
-    </template>
-
-    <template id="report_framajova.framajova_labels_container">
-        <t t-name="report_framajova.framajova_labels_container">
-            <t t-call="web.html_container">
-                <div class="labels-container">
-                    <t t-foreach="range(num_labels)" t-as="label">
-                        <div class="label">
-                            <t t-call="report_framajova.framajova_label_report" t-lang="o._get_report_lang()"/>
-                        </div>
-                    </t>
-                </div>
             </t>
         </t>
     </template>
@@ -49,87 +39,88 @@
 
     <template id="framajova_label_report">
         <t t-name="report_framajova.framajova_label_report">
-            <t t-call="web.html_container">
-                <t t-call="report_framajova.custom_report_layout">
-                    <div class="container" style="width: 100%;">
+            <t t-name="report_framajova.framajova_label_report">
+                <t t-call="web.html_container">
+                    <t t-call="report_framajova.custom_report_layout">
+                        <div class="container" style="width: 100%; font-family: Arial, sans-serif;">
 
 
-                        <div class="row">
-                            <div class="col-12" style="font-size: 2em; ">DESCRIPTION</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12" style="font-size: 3em; font-weight: bold; margin-bottom: 10px;">
-                                <span t-field="line.product_id.name"/>
+                            <div class="row">
+                                <div class="col-12" style="font-size: 2em; ">DESCRIPTION</div>
                             </div>
+                            <div class="row">
+                                <div class="col-12" style="font-size: 3em; font-weight: bold; margin-bottom: 10px;">
+                                    <span t-field="line.product_id.name"/>
+                                </div>
+                            </div>
+                            <hr style="border: none; border-top: 1px solid black; margin: 20px 0 25px 0;"/>
+
+
+                            <div class="row">
+                                <div class="col-6" style="font-size: 2em; ">LOT</div>
+                                <div class="col-6 text-right" style="font-size: 2em; ">CODE</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6" style="font-size: 3em; font-weight: bold; margin-bottom: 10px;">
+                                    <span t-field="line.lot_id.name"/>
+                                </div>
+                                <div class="col-6 text-right"
+                                     style="font-size: 3em; font-weight: bold; margin-bottom: 10px;">
+                                    <span t-field="line.product_id.default_code"/>
+                                </div>
+                            </div>
+                            <hr style="border: none; border-top: 1px solid black; margin: 5px 0 25px 0;"/>
+
+
+                            <div class="row">
+                                <div class="col-6" style="font-size: 2em;">EXPIRATION DATE</div>
+                                <div class="col-6 text-right" style="font-size: 2em;">QUANTITY</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6" style="font-size: 3em; font-weight: bold;">
+                                    <t t-if="line.lot_id.expiration_date">
+                                        <t t-set="expiration_date" t-value="line.lot_id.expiration_date"/>
+                                        <t t-set="expiration_date_plus_one"
+                                           t-value="expiration_date and expiration_date.replace(day=expiration_date.day + 1)"/>
+                                        <span t-esc="expiration_date_plus_one.strftime('%d/%m/%Y') if expiration_date else ''"/>
+                                    </t>
+                                </div>
+                                <div class="col-6 text-right" style="font-size: 3em; font-weight: bold;">
+                                    <t t-if="line.move_id.product_packaging_quantity and int(line.move_id.product_packaging_quantity) &gt; 0">
+                                        <t t-set="factor"
+                                           t-value="(line.quantity / line.move_id.quantity if line.move_id.quantity else 1)"/>
+                                        <span t-if="int(line.quantity/denom) !=ceil_value and  label != ceil_value-1  "  t-esc="line.quantity / (line.move_id.product_packaging_quantity * (float(factor) if factor else 1))"/>
+                                        <span t-if="int(line.quantity/denom) ==ceil_value "  t-esc="line.quantity / (line.move_id.product_packaging_quantity * (float(factor) if factor else 1))"/>
+
+                                        <span t-if="int(line.quantity/denom) !=ceil_value and label == ceil_value-1  " t-esc="(line.quantity%denom)"/>
+
+
+                                    </t>
+                                    <t t-if="int(line.move_id.product_packaging_quantity) == 0">
+                                        <span t-esc="line.quantity"/>
+                                        <span t-esc="line.product_uom_id.name"/>
+                                    </t>
+
+
+                                </div>
+                            </div>
+
                         </div>
                         <hr style="border: none; border-top: 1px solid black; margin: 20px 0 25px 0;"/>
-
-
                         <div class="row">
-                            <div class="col-6" style="font-size: 2em; ">LOT</div>
-                            <div class="col-6 text-right" style="font-size: 2em; ">CODE</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6" style="font-size: 3em; font-weight: bold; margin-bottom: 10px;">
-                                <span t-field="line.lot_id.name"/>
-                            </div>
-                            <div class="col-6 text-right"
-                                 style="font-size: 3em; font-weight: bold; margin-bottom: 10px;">
-                                <span t-field="line.product_id.default_code"/>
-                            </div>
-                        </div>
-                        <hr style="border: none; border-top: 1px solid black; margin: 5px 0 25px 0;"/>
-
-
-                        <div class="row">
-                            <div class="col-6" style="font-size: 2em;">EXPIRATION DATE</div>
-                            <div class="col-6 text-right" style="font-size: 2em;">QUANTITY</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6" style="font-size: 3em; font-weight: bold;">
-                                <t t-if="line.lot_id.expiration_date">
-                                    <t t-set="expiration_date" t-value="line.lot_id.expiration_date"/>
-                                    <t t-set="expiration_date_plus_one"
-                                       t-value="expiration_date and expiration_date.replace(day=expiration_date.day + 1)"/>
-                                    <span t-esc="expiration_date_plus_one.strftime('%d/%m/%Y') if expiration_date else ''"/>
+                            <div class="col-12 text-center" style=" font-weight: bold;">
+                                <t t-if="line.lot_id.name">
+                                    <!-- Asignamos el valor del código de barras a una variable -->
+                                    <t t-set="barcode_value" t-value="line.lot_id.name"/>
+                                    <!-- Se renderiza la imagen del código de barras usando el widget barcode -->
+                                    <div t-out="barcode_value"
+                                         t-options="{                                     'widget': 'barcode',                                     'symbology': 'Code128',                                     'img_style': 'max-width:100%;'                                 }"/>
+                                    <br/>
+                                    <span t-field="line.lot_id.name"/>
                                 </t>
                             </div>
-                            <div class="col-6 text-right" style="font-size: 3em; font-weight: bold;">
-                                <t t-if="line.move_id.product_packaging_quantity and int(line.move_id.product_packaging_quantity) &gt; 0">
-                                    <t t-set="factor"
-                                       t-value="(line.quantity / line.move_id.quantity if line.move_id.quantity else 1)"/>
-                                    <span t-esc="line.quantity / (line.move_id.product_packaging_quantity * (float(factor) if factor else 1))"/>
-                                    <span t-esc="line.product_uom_id.name"/>
-
-
-                                </t>
-                                <t t-if="int(line.move_id.product_packaging_quantity) == 0">
-                                    <span t-esc="line.quantity"/>
-                                    <span t-esc="line.product_uom_id.name"/>
-                                </t>
-
-
-                            </div>
                         </div>
-
-                    </div>
-                    <hr style="border: none; border-top: 1px solid black; margin: 20px 0 25px 0;"/>
-                    <div class="row">
-                        <div class="col-12 text-center" style=" font-weight: bold;">
-                            <t t-if="line.lot_id.name">
-                                <!-- Asignamos el valor del código de barras a una variable -->
-                                <t t-set="barcode_value" t-value="line.lot_id.name"/>
-                                <!-- Se renderiza la imagen del código de barras usando el widget barcode -->
-                                <div t-out="barcode_value" t-options="{
-                                    'widget': 'barcode',
-                                    'symbology': 'Code128',
-                                    'img_style': 'max-width:100%;'
-                                }"/>
-                                <br/>
-                                <span t-field="line.lot_id.name"/>
-                            </t>
-                        </div>
-                    </div>
+                    </t>
                 </t>
             </t>
         </t>
