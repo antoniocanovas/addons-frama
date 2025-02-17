@@ -37,7 +37,7 @@
         <t t-name="report_framajova.framajova_label_report">
             <t t-call="web.html_container">
                 <t t-call="report_framajova.custom_report_layout">
-                    <div class="container" style="width: 100%; font-family: Arial, sans-serif;">
+                    <div class="container" style="width: 100%;">
 
 
                         <div class="row">

@@ -25,7 +25,9 @@
                             </thead>
                             <tbody>
                                 <t t-if="group[1]">
-                                    <tr t-foreach="group[1]" t-as="sml_line">
+                                    <t t-set="sorted_lines"
+                                       t-value="sorted(group[1], key=lambda l: l['product_name'])"/>
+                                    <tr t-foreach="sorted_lines" t-as="sml_line">
                                         <td>
                                             <t t-esc="sml_line['product_name']"/>
                                         </td>
@@ -54,5 +56,15 @@
                 </t>
             </t>
         </xpath>
+
+
+
+                <xpath expr="//t[@t-set='lines']" position="replace">
+                    <!-- Ordena alfabéticamente por el nombre (en minúsculas para evitar problemas de mayúsculas/minúsculas) -->
+                    <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: (l.name or '').lower())"/>
+                </xpath>
+
+
+
     </template>
 </odoo>

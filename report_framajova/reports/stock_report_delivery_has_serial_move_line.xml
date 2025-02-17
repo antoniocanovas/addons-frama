@@ -20,7 +20,7 @@
               inherit_id="stock.stock_report_delivery_has_serial_move_line" priority="99">
         <xpath expr="//t[@t-name='stock.stock_report_delivery_has_serial_move_line']" position="inside">
             <td class="text-center" >
-                <span t-if="move_line.lot_id.cooking_date" t-field="move_line.lot_id.mrp_production_id.date_finished"
+                <span t-if="move_line.lot_id.cooking_date" t-field="move_line.lot_id.cooking_date"
                       t-options='{"widget": "date", "date_format": "%%d/%%m/%%Y"}'/>
 
             </td>
