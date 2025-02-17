@@ -1,6 +1,8 @@
 from odoo import models, fields, api
 import datetime
 
+from src.core.odoo.addons.test_convert.tests.test_env import record
+
 
 class MrpWorkorder(models.Model):
     _inherit = 'mrp.workorder'
@@ -8,9 +10,8 @@ class MrpWorkorder(models.Model):
 
     @api.constrains('date_finished')
     def update_lot_dates(self):
-        local_time = datetime.datetime.now()
-        print(self)
         for record in self:
+            local_time = record.date_finished
             # Verificamos todas las condiciones necesarias
             if (
                 record.workcenter_id.update_lot_dates and
