@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="framajova_label_report_document">
+    <template id="c">
         <t t-name="report_framajova.framajova_label_report_document">
 
             <t t-foreach="docs" t-as="o">
@@ -12,10 +12,10 @@
                     <t t-if="int(move_id.product_packaging_quantity) != 0">
 
                         <t t-foreach="lines" t-as="line">
-                            <t t-foreach="range(int(line.quantity/(move_id.quantity / move_id.product_packaging_quantity or 1)))"
-                               t-as="label">
-                                <t t-call="report_framajova.framajova_label_report" t-lang="o._get_report_lang()"/>
-                            </t>
+                            <t t-set="num_labels"
+                               t-value="(int(line.quantity / move_id.product_packaging_quantity) if (line.quantity % move_id.product_packaging_quantity) == 0 else int(line.quantity / move_id.product_packaging_quantity) + 1)"/>
+                            <t t-call="report_framajova.framajova_labels_container" t-lang="o._get_report_lang()"/>
+
                         </t>
                     </t>
                     <t t-if="int(move_id.product_packaging_quantity) == 0">
@@ -30,6 +30,16 @@
         </t>
 
 
+    </template>
+
+    <template id="report_framajova.framajova_labels_container">
+        <div class="labels-container">
+            <t t-foreach="range(num_labels)" t-as="label">
+                <div class="label">
+                    <t t-call="report_framajova.framajova_label_report" t-lang="o._get_report_lang()"/>
+                </div>
+            </t>
+        </div>
     </template>
 
 
