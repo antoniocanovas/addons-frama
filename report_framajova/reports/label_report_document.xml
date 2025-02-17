@@ -33,13 +33,17 @@
     </template>
 
     <template id="report_framajova.framajova_labels_container">
-        <div class="labels-container">
-            <t t-foreach="range(num_labels)" t-as="label">
-                <div class="label">
-                    <t t-call="report_framajova.framajova_label_report" t-lang="o._get_report_lang()"/>
+        <t t-name="report_framajova.framajova_labels_container">
+            <t t-call="web.html_container">
+                <div class="labels-container">
+                    <t t-foreach="range(num_labels)" t-as="label">
+                        <div class="label">
+                            <t t-call="report_framajova.framajova_label_report" t-lang="o._get_report_lang()"/>
+                        </div>
+                    </t>
                 </div>
             </t>
-        </div>
+        </t>
     </template>
 
 
