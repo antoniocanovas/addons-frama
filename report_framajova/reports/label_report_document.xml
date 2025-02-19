@@ -2,38 +2,37 @@
 <odoo>
     <template id="framajova_label_report_document">
         <t t-name="report_framajova.framajova_label_report_document">
-            <t t-name="report_framajova.framajova_label_report_document">
-                <t t-foreach="docs" t-as="o">
-                    <span t-esc="o.name"/>
+            <t t-foreach="docs" t-as="o">
+                <span t-esc="o.name"/>
 
-                    <t t-foreach="o.move_ids" t-as="move_id">
-                        <t t-set="lines" t-value="move_id.move_line_ids"/>
+                <t t-foreach="o.move_ids" t-as="move_id">
+                    <t t-set="lines" t-value="move_id.move_line_ids"/>
 
-                        <t t-if="int(move_id.product_packaging_quantity) != 0">
+                    <t t-if="int(move_id.product_packaging_quantity) != 0">
 
-                            <t t-foreach="lines" t-as="line">
+                        <t t-foreach="lines" t-as="line">
 
-                                <t t-set="denom"
-                                   t-value="(move_id.quantity / move_id.product_packaging_quantity) or 1"/>
-                                <t t-set="ceil_value" t-value="int(((line.quantity - 1) // denom) + 1)"/>
-                                <t t-foreach="range(ceil_value)"
-                                   t-as="label">
+                            <t t-set="denom"
+                               t-value="(move_id.quantity / move_id.product_packaging_quantity) or 1"/>
+                            <t t-set="ceil_value" t-value="int(((line.quantity - 1) // denom) + 1)"/>
+                            <t t-foreach="range(ceil_value)"
+                               t-as="label">
 
-                                    <t t-call="report_framajova.framajova_label_report" t-lang="o._get_report_lang()"/>
-                                </t>
-                            </t>
-                        </t>
-                        <t t-if="int(move_id.product_packaging_quantity) == 0">
-
-                            <t t-foreach="lines" t-as="line">
                                 <t t-call="report_framajova.framajova_label_report" t-lang="o._get_report_lang()"/>
                             </t>
                         </t>
-
                     </t>
+                    <t t-if="int(move_id.product_packaging_quantity) == 0">
+
+                        <t t-foreach="lines" t-as="line">
+                            <t t-call="report_framajova.framajova_label_report" t-lang="o._get_report_lang()"/>
+                        </t>
+                    </t>
+
                 </t>
             </t>
         </t>
+
     </template>
 
 
