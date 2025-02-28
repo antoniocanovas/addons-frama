@@ -21,23 +21,27 @@
 
 
 {
-    "name": "custom_framajova",
+    "name": "mrp_next_workcenter",
     "version": "1.0",
     "depends": [
-        "sale_management",
-        "account",
-        "stock",
+        "mrp",
+        "mrp_workorder"
     ],
     "author": "Punt Sistemes",
     "category": "Project",
     "website": "https://www.puntsistemes.es",
     "description": """
-        custom module for Framajova
+        Module to manage the next workcenter in the mrp
     """,
     "data": [
-        "views/account_invoice.xml",
-        "views/stock_scrap_tree_view.xml",
+        'views/mrp_workcenter_views.xml',
     ],
+    "assets": {
+        "web.assets_backend": [
+            "mrp_framajova/static/src/**/*.xml",
+            "mrp_framajova/static/src/js/*.js",
+        ],
+    },
     "demo": [],
     "installable": True,
     "auto_install": False,
