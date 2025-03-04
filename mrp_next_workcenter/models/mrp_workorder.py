@@ -28,13 +28,13 @@ class MrpWorkorder(models.Model):
     @api.constrains('state')
     def process_default_next_workcenter(self):
         for record in self:
-            if record.state == 'ready' and not record.next_workcenter_executed:
+            if record.state == 'done' and not record.next_workcenter_executed and record.workcenter_id.next_workcenter_id.id :
                 operation_id = record.operation_id
                 next_workorder_id = self.env['mrp.workorder'].search([
                     ('operation_id.sequence', '=', operation_id.sequence+1),
                     ('production_id', '=', record.production_id.id),
                 ])
-                if next_workorder_id:
+                if next_workorder_id.id and next_workorder_id.state == 'ready':
                     next_workorder_id.write({'workcenter_id': record.workcenter_id.next_workcenter_id.id})
 
 
