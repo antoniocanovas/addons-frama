@@ -9,6 +9,8 @@ class MrpWorkorder(models.Model):
 
     next_workcenter_ids = fields.Many2many(
         related='workcenter_id.next_workcenter_ids',)
+    #un booleano que me diga si he ejecutado el next workcenter
+    next_workcenter_executed = fields.Boolean(default=False)
 
 
 
@@ -21,11 +23,12 @@ class MrpWorkorder(models.Model):
             ])
             if next_workorder_id:
                 next_workorder_id.write({'workcenter_id': next_workcenter_id})
+                record.next_workcenter_executed = True
 
     @api.constrains('state')
     def process_default_next_workcenter(self):
         for record in self:
-            if record.state == 'ready':
+            if record.state == 'ready' and not record.next_workcenter_executed:
                 operation_id = record.operation_id
                 next_workorder_id = self.env['mrp.workorder'].search([
                     ('operation_id.sequence', '=', operation_id.sequence+1),

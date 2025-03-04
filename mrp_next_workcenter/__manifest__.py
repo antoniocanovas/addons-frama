@@ -38,8 +38,8 @@
     ],
     "assets": {
         "web.assets_backend": [
-            "mrp_framajova/static/src/**/*.xml",
-            "mrp_framajova/static/src/js/*.js",
+            "mrp_next_workcenter/static/src/components/*.xml",
+            "mrp_next_workcenter/static/src/js/*.js",
         ],
     },
     "demo": [],
