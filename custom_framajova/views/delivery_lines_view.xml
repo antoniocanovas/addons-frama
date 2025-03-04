@@ -1,0 +1,38 @@
+<odoo>
+    <!-- Vista de líneas de entrega -->
+    <record id="view_delivery_lines_tree" model="ir.ui.view">
+        <field name="name">stock.move.delivery.lines.tree</field>
+        <field name="model">stock.move.line</field>
+        <field name="arch" type="xml">
+            <tree string="Delivery Lines" create="false" default_order="date desc">
+                <!-- Campo usado para la agrupación; se puede ocultar en la vista -->
+                <field name="date" invisible="1"/>
+                <field name="product_id" string="Producto"/>
+                <field name="lot_id" string="Lote"/>
+                <field name="quantity" string="Cantidad"/>
+                <field name="product_uom_id" string="Unidad de Medida"/>
+                <field name="picking_id" string="Albarán"/>
+                <field name="sale_id" string="Venta" optional="hide"/>
+                <field name="partner_id" string="Partner ID"  optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Acción para acceder a la vista -->
+    <record id="action_delivery_lines" model="ir.actions.act_window">
+        <field name="name">Delivery Lines</field>
+        <field name="res_model">stock.move.line</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_delivery_lines_tree"/>
+        <field name="domain">[('location_dest_usage' ,'=','customer')]</field>
+        <field name="context">{'group_by': ['date:day', 'picking_id']}</field>
+    </record>
+
+
+
+    <!-- Ubicar el menú de Delivery Lines debajo del menú creado -->
+    <menuitem id="menu_delivery_lines" name="Delivery Lines" parent="stock.menu_stock_warehouse_mgmt"
+              action="action_delivery_lines"/>
+
+
+</odoo>

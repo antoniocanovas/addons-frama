@@ -26,7 +26,7 @@ patch(MrpMenuDialog.prototype, {
                 "process_next_workcenter",
                 [[this.props.record.resId], workcenter.id]
             ).then(() => {
-                this.notification.add(_t("Workcenter procesado correctamente"), {
+                this.notification.add(_t("Workcenter processed successfully"), {
                     type: "success",
                 });
                 this.props.close();
@@ -47,7 +47,7 @@ patch(MrpMenuDialog.prototype, {
             );
 
             if (!nextWorkcenters || !nextWorkcenters.length) {
-                this.notification.add(_t("No hay centros de trabajo siguientes configurados para esta orden."), {
+                this.notification.add(_t("No next workcenters configured for this order."), {
                     type: "warning",
                 });
                 return;
@@ -61,7 +61,7 @@ patch(MrpMenuDialog.prototype, {
 
             // Configurar los parámetros del diálogo
             const params = {
-                title: _t("Seleccionar siguiente centro de trabajo"),
+                title: _t("Select next work center"),
                 confirm: _processNextWorkcenter.bind(this),
                 radioMode: true,
                 workcenters: formattedWorkcenters,
@@ -70,8 +70,8 @@ patch(MrpMenuDialog.prototype, {
             // Mostrar el diálogo
             this.dialogService.add(MrpWorkcenterDialog, params);
         } catch (error) {
-            console.error("Error al obtener los workcenters siguientes:", error);
-            this.notification.add(_t("No se pudieron obtener los centros de trabajo siguientes"), {
+            console.error("Error getting the next workcenters:", error);
+            this.notification.add(_t("Failed to retrieve the next workcenters"), {
                 type: "danger",
             });
         }

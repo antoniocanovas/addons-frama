@@ -1,0 +1,37 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-04 07:32+0000\n"
+"PO-Revision-Date: 2025-03-04 08:38\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: project_task_sign_request
+#: model:ir.model.fields,field_description:project_task_sign_request.field_project_task__sign_request_ids
+#: model_terms:ir.ui.view,arch_db:project_task_sign_request.project_task_sign_request_inh_form
+msgid "Sign requests"
+msgstr "Solicitar firmas"
+
+#. module: project_task_sign_request
+#: model:ir.model,name:project_task_sign_request.model_sign_send_request
+msgid "Sign send request"
+msgstr "Firmar enviar solicitud"
+
+#. module: project_task_sign_request
+#: model:ir.model,name:project_task_sign_request.model_sign_request
+msgid "Signature Request"
+msgstr "Solicitud de firma"
+
+#. module: project_task_sign_request
+#: model:ir.model,name:project_task_sign_request.model_project_task
+#: model:ir.model.fields,field_description:project_task_sign_request.field_sign_request__task_id
+#: model:ir.model.fields,field_description:project_task_sign_request.field_sign_send_request__task_id
+msgid "Task"
+msgstr "Tarea"

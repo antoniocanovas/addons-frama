@@ -37,6 +37,7 @@
     "data": [
         "views/account_invoice.xml",
         "views/stock_scrap_tree_view.xml",
+        "views/delivery_lines_view.xml",
     ],
     "demo": [],
     "installable": True,

@@ -1,0 +1,98 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-04 07:30+0000\n"
+"PO-Revision-Date: 2025-03-04 08:31\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_next_workcenter
+#: model:ir.model.fields,help:mrp_next_workcenter.field_mrp_workcenter__next_workcenter_ids
+#: model:ir.model.fields,help:mrp_next_workcenter.field_mrp_workorder__next_workcenter_ids
+msgid ""
+"Alternative workcenters that can be substituted to this one in order to "
+"dispatch production"
+msgstr ""
+"Centros de trabajo alternativos que se pueden sustituir por este para "
+"despachar la producción"
+
+#. module: mrp_next_workcenter
+#: model:ir.model.fields,field_description:mrp_next_workcenter.field_mrp_workcenter__next_workcenter_id
+msgid "Default next"
+msgstr "Siguiente por defecto"
+
+#. module: mrp_next_workcenter
+#: model:ir.model.fields,help:mrp_next_workcenter.field_mrp_workcenter__next_workcenter_id
+msgid "Default workcenter assigned to the next operation"
+msgstr "Centro de trabajo por defecto asignado a la siguiente operación"
+
+#. module: mrp_next_workcenter
+#. odoo-javascript
+#: code:addons/addons-frama/mrp_next_workcenter/static/src/js/mrp_menu_dialog_next_workcenter.js:0
+#: code:addons/mrp_next_workcenter/static/src/js/mrp_menu_dialog_next_workcenter.js:0
+#, python-format
+msgid "Error al procesar el workcenter"
+msgstr "Error al procesar el centro de trabajo"
+
+#. module: mrp_next_workcenter
+#. odoo-javascript
+#: code:addons/addons-frama/mrp_next_workcenter/static/src/js/mrp_menu_dialog_next_workcenter.js:0
+#: code:addons/mrp_next_workcenter/static/src/js/mrp_menu_dialog_next_workcenter.js:0
+#, python-format
+msgid "Failed to retrieve the next workcenters"
+msgstr "No se pudo recuperar los centros de trabajo siguientes"
+
+#. module: mrp_next_workcenter
+#: model:ir.model.fields,field_description:mrp_next_workcenter.field_mrp_workcenter__next_workcenter_ids
+#: model:ir.model.fields,field_description:mrp_next_workcenter.field_mrp_workorder__next_workcenter_ids
+msgid "Next Workcenters"
+msgstr "Centros de trabajo siguientes"
+
+#. module: mrp_next_workcenter
+#. odoo-javascript
+#: code:addons/addons-frama/mrp_next_workcenter/static/src/components/workorder_menu.xml:0
+#: code:addons/mrp_next_workcenter/static/src/components/workorder_menu.xml:0
+#, python-format
+msgid "Next work center"
+msgstr "Siguiente centro de trabajo"
+
+#. module: mrp_next_workcenter
+#. odoo-javascript
+#: code:addons/addons-frama/mrp_next_workcenter/static/src/js/mrp_menu_dialog_next_workcenter.js:0
+#: code:addons/mrp_next_workcenter/static/src/js/mrp_menu_dialog_next_workcenter.js:0
+#, python-format
+msgid "No next workcenters configured for this order."
+msgstr "No se han configurado centros de trabajo siguientes para esta orden."
+
+#. module: mrp_next_workcenter
+#. odoo-javascript
+#: code:addons/addons-frama/mrp_next_workcenter/static/src/js/mrp_menu_dialog_next_workcenter.js:0
+#: code:addons/mrp_next_workcenter/static/src/js/mrp_menu_dialog_next_workcenter.js:0
+#, python-format
+msgid "Select next work center"
+msgstr "Seleccionar siguiente centro de trabajo"
+
+#. module: mrp_next_workcenter
+#: model:ir.model,name:mrp_next_workcenter.model_mrp_workcenter
+msgid "Work Center"
+msgstr "Centro de trabajo"
+
+#. module: mrp_next_workcenter
+#: model:ir.model,name:mrp_next_workcenter.model_mrp_workorder
+msgid "Work Order"
+msgstr "Orden de trabajo"
+
+#. module: mrp_next_workcenter
+#. odoo-javascript
+#: code:addons/addons-frama/mrp_next_workcenter/static/src/js/mrp_menu_dialog_next_workcenter.js:0
+#: code:addons/mrp_next_workcenter/static/src/js/mrp_menu_dialog_next_workcenter.js:0
+#, python-format
+msgid "Workcenter processed successfully"
+msgstr "Centro de trabajo procesado correctamente"
