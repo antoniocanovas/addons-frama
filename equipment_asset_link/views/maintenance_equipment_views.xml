@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Extend equipment form view -->
+        <record id="maintenance_equipment_view_form_inherit" model="ir.ui.view">
+            <field name="name">maintenance.equipment.form.inherit</field>
+            <field name="model">maintenance.equipment</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+            <field name="arch" type="xml">
+                <!-- Use the field name attribute for targeting instead of string attribute -->
+                <field name="warranty_date" position="after">
+                    <field name="account_asset_id" groups="account.group_account_user"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Extend equipment search view -->
+        <record id="maintenance_equipment_view_search_inherit" model="ir.ui.view">
+            <field name="name">maintenance.equipment.search.inherit</field>
+            <field name="model">maintenance.equipment</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_view_search"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="account_asset_id" groups="account.group_account_user"/>
+                </field>
+                <filter name="assigned" position="after">
+                    <filter string="With Accounting Asset" name="with_asset" domain="[('account_asset_id', '!=', False)]" groups="account.group_account_user"/>
+                    <filter string="Without Accounting Asset" name="without_asset" domain="[('account_asset_id', '=', False)]" groups="account.group_account_user"/>
+                </filter>
+                <group position="inside">
+                    <filter string="Accounting Asset" name="account_asset" domain="[]" context="{'group_by': 'account_asset_id'}" groups="account.group_account_user"/>
+                </group>
+            </field>
+        </record>
+    </data>
+</odoo>

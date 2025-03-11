@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Extend accounting asset form view -->
+        <record id="account_asset_view_form_inherit" model="ir.ui.view">
+            <field name="name">account.asset.form.inherit</field>
+            <field name="model">account.asset</field>
+            <field name="inherit_id" ref="account_asset.view_account_asset_form"/>
+            <field name="arch" type="xml">
+                <div class="oe_button_box" position="inside">
+                    <button
+                        name="action_view_equipments"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-wrench"
+                        groups="maintenance.group_equipment_manager">
+                        <field name="equipment_count" widget="statinfo" string="Equipment"/>
+                    </button>
+                </div>
+
+            </field>
+        </record>
+
+        <!-- Extend accounting asset search view -->
+        <record id="account_asset_view_search_inherit" model="ir.ui.view">
+            <field name="name">account.asset.search.inherit</field>
+            <field name="model">account.asset</field>
+            <field name="inherit_id" ref="account_asset.view_account_asset_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[last()]" position="after">
+                    <filter string="With Equipment" name="with_equipments" domain="[('has_equipment', '=', True)]"/>
+                    <filter string="Without Equipment" name="without_equipments" domain="[('has_equipment', '=', False)]"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

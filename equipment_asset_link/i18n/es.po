@@ -1,0 +1,101 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-11 08:13+0000\n"
+"PO-Revision-Date: 2025-03-11 09:14\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: equipment_asset_link
+#: model:ir.model.fields,field_description:equipment_asset_link.field_maintenance_equipment__account_asset_id
+#: model_terms:ir.ui.view,arch_db:equipment_asset_link.maintenance_equipment_view_search_inherit
+msgid "Accounting Asset"
+msgstr "Activo de contabilidad"
+
+#. module: equipment_asset_link
+#: model:ir.model.fields,help:equipment_asset_link.field_maintenance_equipment__account_asset_id
+msgid "Accounting asset associated with this equipment"
+msgstr "Activo de contabilidad asociado a este equipo"
+
+#. module: equipment_asset_link
+#: model:ir.model,name:equipment_asset_link.model_account_asset
+msgid "Asset/Revenue Recognition"
+msgstr "Reconocimiento de pagos/ingresos"
+
+#. module: equipment_asset_link
+#: model_terms:ir.ui.view,arch_db:equipment_asset_link.account_asset_view_form_inherit
+msgid "Equipment"
+msgstr "Equipo"
+
+#. module: equipment_asset_link
+#: model:ir.model.fields,field_description:equipment_asset_link.field_account_asset__equipment_count
+msgid "Equipment Count"
+msgstr "Cantidad de equipos"
+
+#. module: equipment_asset_link
+#: model:ir.model.fields,help:equipment_asset_link.field_account_asset__equipment_ids
+msgid "Equipment associated with this accounting asset"
+msgstr "Equipo asociado a este activo de contabilidad"
+
+#. module: equipment_asset_link
+#: model:ir.model.fields,field_description:equipment_asset_link.field_account_asset__has_equipment
+msgid "Has Equipment"
+msgstr "Tiene equipo"
+
+#. module: equipment_asset_link
+#: model:ir.model,name:equipment_asset_link.model_maintenance_equipment
+msgid "Maintenance Equipment"
+msgstr "Equipo de mantenimiento"
+
+#. module: equipment_asset_link
+#. odoo-python
+#: code:addons/addons-frama/equipment_asset_link/models/account_asset.py:0
+#: code:addons/equipment_asset_link/models/account_asset.py:0
+#: model:ir.model.fields,field_description:equipment_asset_link.field_account_asset__equipment_ids
+#, python-format
+msgid "Related Equipment"
+msgstr "Equipo relacionado"
+
+#. module: equipment_asset_link
+#: model:res.groups,name:equipment_asset_link.group_equipment_asset_user
+msgid "See Equipment-Asset Relationship"
+msgstr "Ver relación entre equipo y activo"
+
+#. module: equipment_asset_link
+#: model_terms:ir.ui.view,arch_db:equipment_asset_link.maintenance_equipment_view_search_inherit
+msgid "With Accounting Asset"
+msgstr "Con activo de contabilidad"
+
+#. module: equipment_asset_link
+#: model_terms:ir.ui.view,arch_db:equipment_asset_link.account_asset_view_search_inherit
+msgid "With Equipment"
+msgstr "Con equipo"
+
+#. module: equipment_asset_link
+#: model_terms:ir.ui.view,arch_db:equipment_asset_link.maintenance_equipment_view_search_inherit
+msgid "Without Accounting Asset"
+msgstr "Sin activo contable"
+
+#. module: equipment_asset_link
+#: model_terms:ir.ui.view,arch_db:equipment_asset_link.account_asset_view_search_inherit
+msgid "Without Equipment"
+msgstr "Sin equipo"
+
+#. module: equipment_asset_link
+#. odoo-python
+#: code:addons/addons-frama/equipment_asset_link/models/account_asset.py:0
+#: code:addons/equipment_asset_link/models/account_asset.py:0
+#, python-format
+msgid ""
+"You cannot delete this accounting asset because it has linked equipment. "
+"Please remove the reference in the associated equipment first."
+msgstr ""
+"No puedes eliminar este activo contable porque tiene equipo vinculado. Por "
+"favor, elimina la referencia en el equipo asociado primero."
